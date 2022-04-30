@@ -1,3 +1,6 @@
+# Project blog of Ryan J. Southard
+> Created with js-generate; original README below
+
 # React/Redux/Router Starter Project
 
 > Provided for the students of the [Bottega Code School](https://bottega.tech/)
