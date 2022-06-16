@@ -45,15 +45,18 @@ export default class PostHolder extends Component {
             return <div>Loading...</div>;
         }
         return (
-            <div>
+            <div className='postBox'>
                 <h2>{this.state.pageTitle}</h2>
 
-                {this.postItems()}
-
+                <div className='postBoxInner'>
+                    {this.postItems()}
+                </div>
                 <hr />
-                <button onClick={this.handlePageTitleUpdate}>Change Title</button>
-                <button onClick={() => this.handleFilter('charmed')}>Charmed</button>
-                <button onClick={() => this.handleFilter('strange')}>Strange</button>
+                <div className='postButtons'>
+                    <button onClick={this.handlePageTitleUpdate}>Change Title</button>
+                    <button onClick={() => this.handleFilter('charmed')}>Charmed</button>
+                    <button onClick={() => this.handleFilter('strange')}>Strange</button>
+                </div>
             </div>
         )
     }
