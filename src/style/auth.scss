@@ -1,0 +1,19 @@
+.authBox {
+    display: grid;
+    grid-template-rows: 1fr 2fr;
+    justify-content: center;
+    align-items: center;
+
+    .authBoxDorsal {
+        h1 {
+            text-transform: uppercase;
+        }
+    }
+    
+    .authBoxVentral {
+        #loginForm {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+}

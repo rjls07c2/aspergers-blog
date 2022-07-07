@@ -1,0 +1,18 @@
+@mixin normBtn {
+    cursor: pointer;
+    height: 21px;
+    font-size: 1em;
+    font-weight: 500;
+    border: 1px solid transparent;
+    transition: all 0.5 ease-in-out;
+    background-color: $SpergGreen;
+    color: white;
+
+    &:active, &:focus {
+        outline: none;
+    }
+
+    &:hover {
+        background-color: $SpergOrange;
+    }
+}

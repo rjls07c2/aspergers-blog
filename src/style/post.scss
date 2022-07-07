@@ -1,9 +1,22 @@
 .postBox {
     display: grid;
-    grid-template-rows: 1fr 1fr 0.01fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+
+    .postButtons {
+        display: flex;
+        justify-content: space-evenly;
+    }
 
     .postBoxInner {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+.postItemSep {
+    a {
+        color: $SpergGreen;
+        text-decoration: none;
+        text-transform: uppercase;
     }
 }

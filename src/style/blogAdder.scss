@@ -1,0 +1,12 @@
+.blogAdderMain {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+
+    .blogForm {
+        background-color: $SpergGreenLight;
+    }
+
+    .blogSidebar {
+        background-color: $SpergAzureLight;
+    }
+}

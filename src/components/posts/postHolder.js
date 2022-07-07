@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from 'axios';
 
 import PostItem from './postItem';
 
@@ -7,37 +8,43 @@ export default class PostHolder extends Component {
         super()
         
         this.state = {
-            pageTitle: 'Suborbital Eccentricity',
             isLoading: false,
-            data: [
-                { partner: 'Dewey', category: 'charmed', permalink: 'Dewey'},
-                { partner: 'Screwem', category: 'strange', permalink: 'Screwem' },
-                { partner: 'Howe', category: 'charmed', permalink: 'Howe' }
-            ]
+            dummy: []
         };
 
-        this.handlePageTitleUpdate = this.handlePageTitleUpdate.bind(this);
         this.handleFilter = this.handleFilter.bind(this);
+        this.getBlogs = this.getBlogs.bind(this);
       }
 
-    postItems() {
-        return this.state.data.map(item => {
-            return <PostItem title={item.partner} url={'google.com'} permalink={item.permalink}/>;
+    getBlogs() {
+        axios.get("http://127.0.0.1:5000/posts")
+        .then(response => {
+            this.setState({
+                dummy: response.data
+            });
         })
-    }
-
-    handlePageTitleUpdate() {
-        this.setState({
-            pageTitle: "Brachistochrone!"
+        .catch(error => {
+            console.log(error);
         });
     }
 
+    postItems() {
+        return this.state.dummy.map(item => {
+            return <PostItem key={item.id} item={item} />;
+        })
+    }
+
+    
     handleFilter(filter) {
         this.setState({
             data: this.state.data.filter(item => {
                 return item.category === filter;
             })
         })
+    }
+
+    componentDidMount() {
+        this.getBlogs();
     }
     
     render() {
@@ -46,16 +53,12 @@ export default class PostHolder extends Component {
         }
         return (
             <div className='postBox'>
-                <h2>{this.state.pageTitle}</h2>
-
+                <div className='postButtons'>
+                    <button className='btn' onClick={() => this.handleFilter('charmed')}>Charmed</button>
+                    <button className='btn' onClick={() => this.handleFilter('strange')}>Strange</button>
+                </div>
                 <div className='postBoxInner'>
                     {this.postItems()}
-                </div>
-                <hr />
-                <div className='postButtons'>
-                    <button onClick={this.handlePageTitleUpdate}>Change Title</button>
-                    <button onClick={() => this.handleFilter('charmed')}>Charmed</button>
-                    <button onClick={() => this.handleFilter('strange')}>Strange</button>
                 </div>
             </div>
         )

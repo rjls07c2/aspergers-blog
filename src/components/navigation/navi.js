@@ -10,14 +10,27 @@ export default class NaviBar extends Component {
         return (
             <div className='naviBarBox'>
                 <div className='naviSide'>
-                    <NavLink exact to='/' activeClassName='navActive'>Home</NavLink>
-                    <NavLink to='/about' activeClassName='navActive'>About</NavLink>
-                    <NavLink to='/contact' activeClassName='navActive'>Contact</NavLink>
-                    <NavLink to='/blog' activeClassName='navActive'>Blog</NavLink>
-                    { false ? <button>AddBlog</button> : null }
+                    <div className='naviLink'>
+                        <NavLink exact to='/' activeClassName='naviActive'>Home</NavLink>
+                    </div>
+                    <div className='naviLink'>
+                        <NavLink to='/about' activeClassName='naviActive'>About</NavLink>
+                    </div>
+                    <div className='naviLink'>
+                        <NavLink to='/contact' activeClassName='naviActive'>Contact</NavLink>
+                    </div>
+                    <div className='naviLink'>
+                        <NavLink to='/blog' activeClassName='naviActive'>Blog</NavLink>
+                    </div>
+                    <div className='naviLink'>
+                       <NavLink to='/blogAdder' activeClassName='naviActive'>Blog Adder</NavLink>
+                    </div>
+                    
                 </div>
                 <div className='authSide'>
-                    <button>Login</button>
+                    <div className='theBlogger'>
+                        Ryan J. Southard
+                    </div>
                     { false ? <button>Logout</button> : null }
                 </div>
             </div>
