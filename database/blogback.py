@@ -15,17 +15,20 @@ mar = Marshmallow(blogback)
 class Blogpost(dat.Model):
     id = dat.Column(dat.Integer, primary_key=True)
     title = dat.Column(dat.String(100), unique=False)
-    words = dat.Column(dat.String(5000), unique=False)
+    desc = dat.Column(dat.String(300), unique=False)
+    cats = dat.Column(dat.String(100), unique=False)
+    theText = dat.Column(dat.String(4000), unique=False)
 
-    def __init__(self, id, title, words):
-        self.id = id
+    def __init__(self, title, desc, cats, theText):
         self.title = title
-        self.words = words
+        self.desc = desc
+        self.cats = cats
+        self.theText = theText
 
 
 class BlogSchema(mar.Schema):
     class Meta:
-        fields = ('id', 'title', 'words')
+        fields = ('title', 'desc', 'cats', 'theText')
 
 
 blog_schema = BlogSchema()
@@ -35,9 +38,11 @@ blogs_schema = BlogSchema(many=True)
 @blogback.route('/post', methods=["POST"])
 def add_post():
     title = request.json['title']
-    words = request.json['words']
+    desc = request.json['desc']
+    cats = request.json['cats']
+    theText = request.json['theText']
 
-    new_post = Blogpost(title, words)
+    new_post = Blogpost(title, desc, cats, theText)
 
     dat.session.add(new_post)
     dat.session.commit()
@@ -51,10 +56,14 @@ def add_post():
 def post_update(id):
     blogpost = Blogpost.query.get(id)
     title = request.json['title']
-    words = request.json['words']
+    desc = request.json['desc']
+    cats = request.json['cats']
+    theText = request.json['theText']
 
     blogpost.title = title
-    blogpost.words = words
+    blogpost.desc = desc
+    blogpost.cats = cats
+    blogpost.theText = theText
 
     dat.session.commit()
     return blog_schema.jsonify(blogpost)

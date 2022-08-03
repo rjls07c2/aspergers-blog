@@ -59,7 +59,7 @@ export default class App extends Component {
               <Route path='/contact' component={Contact} />
               <Route path='/blog' component={Blog} />
               <Route path='/blogAdder' component={BlogAdder} />
-              <Route exact path='/posts/:permalink' component={PostDetail} />
+              <Route exact path='/posts/:slug' component={PostDetail}/>
               <Route component={NoMatch} />
             </Switch>
           </div>
